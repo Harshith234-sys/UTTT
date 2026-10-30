@@ -9,13 +9,13 @@ const winningCombinations = [
   [2, 4, 6]
 ];
 export function checkWinner(board){
-    for(const combiantions of winningCombinations){
-        const[a,b,c] = combiantions;
+    for(const combiantion of winningCombinations){
+        const[a,b,c] = combiantion;
         if((board[a] === 'X' || board[a] === 'O' )&& board[a] === board[b] && board[b] === board[c]  ){
             return board[a];
         }
-        return null;
     }
+        return null;
 }
 export function isBoardFull(board){
     for(const cell of board){

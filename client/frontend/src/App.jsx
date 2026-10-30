@@ -15,7 +15,16 @@ function App() {
       <h1>Ultimate Tic-Tac-Toe</h1>
 
       <p>Current Player: {game.currentPlayer}</p>
+      {game.winner && <h2>🏆 Player {game.winner} Wins!</h2>}
 
+      {game.isDraw && <h2>🤝 Game Draw!</h2>}
+
+      <button
+        className="restart-btn"
+        onClick={() => setGame(createInitialState())}
+      >
+        Restart Game
+      </button>
       <div className="game-board">
         {game.boards.map((board, boardIndex) => (
           <MiniBoard
@@ -24,9 +33,10 @@ function App() {
             boardIndex={boardIndex}
             onCellClick={handleCellClick}
             active={
-              game.activeBoard === null ||
-              game.activeBoard === boardIndex
+                (game.activeBoard === null || game.activeBoard === boardIndex) &&
+                game.miniBoardWinners[boardIndex] === null
             }
+            winner={game.miniBoardWinners[boardIndex]}
           />
         ))}
       </div>
